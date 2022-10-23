@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User =require('../models/User');
+const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
+var jwt = require('jsonwebtoken');
+const JWT_SECRET = 'atuljwttoken';
 
 
 // Route For Create User by Post Method  /api/auth
@@ -27,12 +30,22 @@ router.post('/createuser',[
       if(user){
         return res.status(400).json({error : "User with this Email already exits"});
       }
+      const salt = await bcrypt.genSaltSync(10);
+      secPass =  await bcrypt.hash(req.body.password,salt);
       user = await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
-      })
-      res.json({"Success":"Your Data is saved successfully"});
+        password: secPass,
+      });
+      const data ={
+        user:{
+          id:user.id
+        }
+      }
+
+      const authToken = jwt.sign(data,JWT_SECRET);
+      res.json({authToken});
+      //res.json({"Success":"Your Data is saved successfully"});
     } 
     catch (error){
       console.error(error.message);
