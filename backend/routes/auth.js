@@ -12,7 +12,7 @@ var fetchuser = require('../middleware/fetchuser');
 
 // 1- Route For Create User by Post Method  /api/auth/createuser
 router.post('/createuser',[
-  body('name','Enter Name Please').isLength({ min: 5 }),
+  body('name','Enter Name Please').isLength({ min: 4 }),
   body('email','Enter valid Email').isEmail(),
   body('password').isLength({ min: 5 }),
   ], async (req, res) => {
