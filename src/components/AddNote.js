@@ -1,7 +1,7 @@
 import React,{ useContext, useState } from 'react'
 import noteContext from '../context/notes/noteContext'
 
-function AddNote() {
+function AddNote(props) {
     const context = useContext(noteContext);
     const {addNote } = context;
 
@@ -11,6 +11,8 @@ function AddNote() {
         e.preventDefault();
         addNote(note.title,note.description,note.tag);
         setNote({title:" ",description:" ",tag:" "});
+        props.showAlert('Note Added Successfully','success');
+
     }
 
     const handelInput = (e)=>{

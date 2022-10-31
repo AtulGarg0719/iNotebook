@@ -16,6 +16,7 @@ router.post('/createuser',[
   body('email','Enter valid Email').isEmail(),
   body('password').isLength({ min: 5 }),
   ], async (req, res) => {
+    let success=false;
 
   //without validate save method uses
   // console.log(req.body);
@@ -34,7 +35,7 @@ router.post('/createuser',[
       let user = await User.findOne({email:req.body.email});
       console.log(user)
       if(user){
-        return res.status(400).json({error : "User with this Email already exits"});
+        return res.status(400).json({success,error : "User with this Email already exits"});
       }
       const salt = await bcrypt.genSaltSync(10);
       secPass =  await bcrypt.hash(req.body.password,salt);
@@ -48,9 +49,9 @@ router.post('/createuser',[
           id:user.id
         }
       }
-
+      success=true;
       const authToken = jwt.sign(data,JWT_SECRET);
-      res.json({authToken});
+      res.json({success,authToken});
       //res.json({"Success":"Your Data is saved successfully"});
     } 
     catch (error){
