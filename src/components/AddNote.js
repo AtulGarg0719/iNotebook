@@ -10,6 +10,7 @@ function AddNote() {
     const handelSubmit =(e)=>{
         e.preventDefault();
         addNote(note.title,note.description,note.tag);
+        setNote({title:" ",description:" ",tag:" "});
     }
 
     const handelInput = (e)=>{
@@ -23,19 +24,19 @@ function AddNote() {
         <form className='my-3'>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>
-            <input type="text" className="form-control" id="title" name='title' aria-describedby="titleHelp" onChange={handelInput}/>
+            <input type="text" className="form-control" id="title" value={note.title} name='title' aria-describedby="titleHelp" onChange={handelInput} minLength={5} required/>
               <div id="titleHelp" className="form-text">If you want to give Title to your Note then enter.</div>
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <input type="text" className="form-control" id="description" name='description' onChange={handelInput}/>
+            <input type="text" className="form-control" id="description" value={note.description} name='description' onChange={handelInput} minLength={5} required/>
           </div>
           <div className="mb-3">
             <label htmlFor="tag" className="form-label">Tag</label>
-            <input type="text" className="form-control" id="tag" name='tag' onChange={handelInput}/>
+            <input type="text" className="form-control" id="tag" name='tag' value={note.tag} onChange={handelInput} minLength={5} required/>
           </div>
         
-          <button type="submit" className="btn btn-primary" onClick={handelSubmit}>Submit</button>
+          <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handelSubmit}>Submit</button>
         </form>
       </div>
     </div>
