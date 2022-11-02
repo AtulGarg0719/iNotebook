@@ -12,7 +12,7 @@ const NoteState = (props) => {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json',
-              'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1ZTAxYWJhYTI1ODFiMWZiMWM2MDM5In0sImlhdCI6MTY2NzEwNTMyNH0.0nspS8daoPwTnxH_VKSR294jYqNmJmiGhHhEBMVWXao'
+              'auth-token':localStorage.getItem('token')
               // 'Content-Type': 'application/x-www-form-urlencoded',
             },
         });
@@ -27,7 +27,7 @@ const NoteState = (props) => {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json',
-              'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1ZTAxYWJhYTI1ODFiMWZiMWM2MDM5In0sImlhdCI6MTY2NzEwNTMyNH0.0nspS8daoPwTnxH_VKSR294jYqNmJmiGhHhEBMVWXao'
+              'auth-token':localStorage.getItem('token')
               // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({title,description,tag}) // body data type must match "Content-Type" header
@@ -43,7 +43,7 @@ const NoteState = (props) => {
             method: 'PUT', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json',
-              'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1ZTAxYWJhYTI1ODFiMWZiMWM2MDM5In0sImlhdCI6MTY2NzEwNTMyNH0.0nspS8daoPwTnxH_VKSR294jYqNmJmiGhHhEBMVWXao'
+              'auth-token':localStorage.getItem('token')
               // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({title,description,tag}) // body data type must match "Content-Type" header
@@ -76,7 +76,7 @@ const NoteState = (props) => {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Content-Type': 'application/json',
-              'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1ZTAxYWJhYTI1ODFiMWZiMWM2MDM5In0sImlhdCI6MTY2NzEwNTMyNH0.0nspS8daoPwTnxH_VKSR294jYqNmJmiGhHhEBMVWXao'
+              'auth-token':localStorage.getItem('token')
               // 'Content-Type': 'application/x-www-form-urlencoded',
             },
         });
